@@ -27,8 +27,8 @@ async function sendUser(e) {
     user
   );
 
-  // Name.value = "";
-  // Email.value = "";
-  // Pass.value = "";
-  // Mobile.value = "";
+  Name.value = "";
+  Email.value = "";
+  Pass.value = "";
+  Mobile.value = "";
 }

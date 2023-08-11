@@ -1,0 +1,30 @@
+h1{
+    text-align: center;
+}
+
+.container{
+    text-align: center;
+    background: #e0e0e0;
+    height: 15rem;
+    width: 16rem;
+    padding-top: 62px;
+    margin-left: 32rem;
+    box-shadow: -4px 2px 39px 5px gray;
+}
+
+#my-form{
+    display: inline-grid;
+}
+
+#submit-btn{
+    color: white;
+    background: black;
+}
+
+p{
+    padding-right: 4rem;
+}
+
+p a{
+    color: green;
+}
