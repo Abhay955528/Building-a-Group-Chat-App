@@ -13,7 +13,8 @@ const User = sequelize.define("Signup", {
   },
   email:{
     type:Sequlize.STRING,
-    allowNull:false
+    allowNull:false,
+    primaryKey:true
   },
   pass:{
     type:Sequlize.STRING,

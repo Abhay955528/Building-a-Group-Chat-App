@@ -1,0 +1,23 @@
+
+  h1{
+    text-align: center;
+}
+
+.containar {
+  border: 2px solid;
+  height: 18rem;
+  width: 17rem;
+  margin-left: 31rem;
+  text-align: center;
+}
+
+#login {
+  display: inline-grid;
+  padding-top: 17px;
+}
+
+a{
+    color: black;
+    color: green;
+  }
+

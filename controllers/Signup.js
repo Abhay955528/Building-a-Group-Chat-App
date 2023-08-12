@@ -3,13 +3,9 @@ const User = require("../model/Signup");
 
 const Signup = async (req, res) => {
   try {
-    const { Name, Email, Pass, Mobile } = req.body;
-    const name = Name;
-    const email = Email;
-    const pass = Pass;
-    const number = Mobile;
+    const { name, email, pass, number } = req.body;
     let solt = 10;
-    bcrypt.hash(Pass, solt, async (error, hash) => {
+    bcrypt.hash(pass, solt, async (error, hash) => {
       const uId = await User.create({
         name,
         email,

@@ -1,34 +1,39 @@
 const form = document.getElementById("my-form");
-const name = document.getElementById("user-name");
-const email = document.getElementById("user-email");
-const pass = document.getElementById("user-pass");
-const mobile = document.getElementById("user-mobile");
+const Name = document.getElementById("user-name");
+const Email = document.getElementById("user-email");
+const Pass = document.getElementById("user-pass");
+const Mobile = document.getElementById("user-mobile");
 
 form.addEventListener("submit", sendUser);
 
 async function sendUser(e) {
-  e.preventDefault();
-  const Name = name.value;
-  const Email = email.value;
-  const Pass = pass.value;
-  const Mobile = mobile.value;
+  try {
+    e.preventDefault();
+    const name = Name.value;
+    const email = Email.value;
+    const pass = Pass.value;
+    const number = Mobile.value;
 
-  const user = {
-    Name,
-    Email,
-    Pass,
-    Mobile,
-  };
+    const user = {
+      name,
+      email,
+      pass,
+      number,
+    };
 
-  console.log(user);
+    console.log(user);
 
-  const response = await axios.post(
-    "http://localhost:4000/user/user-Signup",
-    user
-  );
+    const response = await axios.post(
+      "http://localhost:4000/user/user-Signup",
+      user
+    );
 
-  Name.value = "";
-  Email.value = "";
-  Pass.value = "";
-  Mobile.value = "";
+    Name.value = "";
+    Email.value = "";
+    Pass.value = "";
+    Mobile.value = "";
+    
+  } catch (error) {
+    console.log(error);
+  }
 }
