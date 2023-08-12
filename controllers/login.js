@@ -2,6 +2,10 @@ const Signup = require("../model/Signup");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+function generateAccessToken(id,name) {
+    return jwt.sign({ userId: id, name: name}, "secretKey");
+}
+
 const loginData = async (req, res) => {
   try {
     const { email, pass } = req.body;
@@ -14,16 +18,20 @@ const loginData = async (req, res) => {
         } else if (result === true) {
           res
             .status(201)
-            .json({ message: "Successfuly signed up", success: true });
+            .json({
+              message: "Successfuly signed up",
+              success: true,
+              token: generateAccessToken(user[0].id, user[0].name),
+            });
         } else {
           res
-            .status(400)
+            .status(401)
             .json({ message: "Password incorrect", success: false });
         }
       });
     } else {
       return res
-        .status(400)
+        .status(404)
         .json({ success: false, message: "User Doesnot exists" });
     }
   } catch (error) {

@@ -23,6 +23,8 @@ async function loginData(e) {
 
     if (response.status === 201) {
       alert(response.data.message);
+      localStorage.setItem("token", response.data.token);
+      console.log(response.data.token);
       window.location.href = "";
     }
 
