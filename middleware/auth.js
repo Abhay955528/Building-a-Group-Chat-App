@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const Signup = require("../model/Signup");
 
-const authenticate = (req, res) => {
+const authenticate = (req, res,next) => {
   try {
     const token = req.header("Authorization");
     console.log('TOKEN>>>>',token);

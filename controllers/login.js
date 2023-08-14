@@ -1,9 +1,10 @@
 const Signup = require("../model/Signup");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 function generateAccessToken(id,name) {
-    return jwt.sign({ userId: id, name: name}, "secretKey");
+    return jwt.sign({ userId: id, name: name}, process.env.SECRET_KEY);
 }
 
 const loginData = async (req, res) => {

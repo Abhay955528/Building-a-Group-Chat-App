@@ -25,7 +25,7 @@ async function loginData(e) {
       alert(response.data.message);
       localStorage.setItem("token", response.data.token);
       console.log(response.data.token);
-      window.location.href = "";
+      window.location.href = "../views/chat.html";
     }
 
     Email.value = "";
