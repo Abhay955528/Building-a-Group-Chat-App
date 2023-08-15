@@ -9,7 +9,7 @@ const addmassage = async (req, res) => {
       massage: massage,
       SignupId: req.user.id,
     });
-    res.status(200).json({ NewMassage: Result });
+    res.status(200).json({NewMassage:Result });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
@@ -18,18 +18,9 @@ const addmassage = async (req, res) => {
 
 const getmassage = async (req, res) => {
   try {
-    const uId = await Massage.findAll({
-      attributes: ["massage", "SignupId"],
-      include: [
-        {
-          model: User,
-          attributes: ["id", "name"],
-        },
-      ],
-    });
-
+    const uId = Massage.findAll({ where: { SignupId: req.user.id } });
     console.log(uId);
-    res.status(201).json({ allMassage: uId });
+    res.status(201).json({allMassage:uId})
   } catch (error) {
     console.log(error);
   }
@@ -37,5 +28,5 @@ const getmassage = async (req, res) => {
 
 module.exports = {
   addmassage,
-  getmassage,
+  getmassage
 };
