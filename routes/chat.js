@@ -5,6 +5,6 @@ const userauthentication = require('../middleware/auth');
 
 router.post('/user-addmassage',userauthentication.authenticate,massageControllers.addmassage);
 
-router.post('/user-getmassage',userauthentication.authenticate,massageControllers.getmassage);
+router.get('/user-getmassage',userauthentication.authenticate,massageControllers.getmassage);
 
 module.exports = router;
