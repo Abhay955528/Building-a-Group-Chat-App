@@ -16,6 +16,7 @@ const addmassage = async (req, res) => {
   }
 };
 
+// get Massage in database
 const getmassage = async (req, res) => {
   try {
     const uId = Massage.findAll({ where: { SignupId: req.user.id } });
