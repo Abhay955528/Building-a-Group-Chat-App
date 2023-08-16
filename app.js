@@ -1,10 +1,5 @@
 const express = require("express");
-const http = require("http");
-const socketo = require("socket.io");
 const app = express();
-
-const server = http.createServer(app);
-const io = socketo(server);
 
 const sequelize = require("./util/database");
 const bodyParser = require("body-parser");
@@ -14,11 +9,11 @@ const cors = require("cors");
 // Routes
 const SignupRoutes = require("./routes/Signup");
 const loginRoutes = require("./routes/login");
-const chatRoutes = require("./routes/chat");
+const chatRoutes = require('./routes/chat')
 
 // Module
-const User = require("./model/Signup");
-const Massage = require("./model/massage");
+const User = require('./model/Signup');
+const Massage = require('./model/massage');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -34,8 +29,9 @@ Massage.belongsTo(User);
 sequelize
   .sync()
   .then((result) => {
-    server.listen(4000);
+    app.listen(4000);
   })
   .catch((error) => {
     console.log(error);
   });
+  

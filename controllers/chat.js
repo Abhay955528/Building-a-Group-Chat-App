@@ -4,18 +4,19 @@ const Massage = require("../model/massage");
 const addmassage = async (req, res) => {
   try {
     const { massage } = req.body;
+    console.log(massage);
+    console.log(req.user.id);
     const Result = await Massage.create({
       massage: massage,
       SignupId: req.user.id,
     });
-    res.status(200).json({ NewMassage: Result });
+    res.status(200).json({ NewMassage: Result, user: req.user});
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
   }
 };
 
-// get Massage in database
 const getmassage = async (req, res) => {
   try {
     const uId = await Massage.findAll({
@@ -27,6 +28,7 @@ const getmassage = async (req, res) => {
         },
       ],
     });
+    console.log(uId);
     res.status(201).json({ allMassage: uId });
   } catch (error) {
     console.log(error);
