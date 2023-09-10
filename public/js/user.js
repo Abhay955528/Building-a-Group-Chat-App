@@ -28,6 +28,10 @@ async function sendUser(e) {
       user
     );
 
+    if(response.status===201) {
+      alert(response.data.message);
+    }
+
     Name.value = "";
     Email.value = "";
     Pass.value = "";

@@ -8,16 +8,55 @@
   </head>
   <body>
     <h2>Chat App</h2>
-    
+
     <form id="user-massage">
       <ul id="user"></ul>
-    <div class="container">
-      <div class="box1">
-          <input type="text" id="massage" name="text" required/>
+      <div class="container">
+        <div class="box1">
+          <input type="text" id="massage" name="text" required />
           <button type="submit">send</button>
         </div>
       </div>
     </form>
+    
+    <div>
+      <form id="addOradmin">
+        <select id="select-user">
+          <option value="">Select User</option>
+        </select>
+        <select id="select-group">
+          <option value="">Select Group</option>
+        </select>
+        <input type="button" value="Add" id="add-user" />
+        <input type="button" value="Admin" id="admin-user" />
+      </form>
+    </div>
+    <div>
+      <h2>Group:</h2>
+      <ul id="groups"></ul>
+      <ul id="newul"></ul>
+    </div>
+    <div class="center">
+      <form action="">
+        <input type="text" id="group" placeholder="Group-Name"/>
+        <button type="submit" class="create" >Create</button>
+      </form>
+    </div>
+    <div id="chat-one" class="center" style="visibility: visible">
+      <form action="">
+        <input type="text" id="chat" placeholder="Group-Chat "/>
+        <button type="submit" class="send">Send</button>
+      </form>
+    </div>
+    <form id="chat-group" class="center"> 
+      <input
+        type="text"
+        name="text"
+        placeholder="chat inside group..."
+        required
+      />
+      <input type="submit" value="Send" />
+    </form> 
     <script src="../public/js/chat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
   </body>

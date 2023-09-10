@@ -21,17 +21,24 @@ async function loginData(e) {
       loginUser
     );
 
-    if (response.status === 201) {
-      alert(response.data.message);
-      localStorage.setItem("token", response.data.token);
-      console.log(response.data.token);
-      window.location.href = "../views/chat.html";
+    if (response) {
+      if (response.status === 201) {
+        console.log(response.data.message);
+        alert(response.data.message);
+        localStorage.setItem("token", response.data.token);
+        console.log(response.data.token);
+        window.location.href = "../views/chat.html";
+      }
     }
 
     Email.value = "";
     Pass.value = "";
   } catch (error) {
-    console.log(error);
-    document.body.innerHTML += `<div style="color:red;">${error.message}`;
+    if (error) {
+      console.log(error.message);
+      alert(error.message);
+    }
+    // console.log(error);
+    // document.body.innerHTML += `<div style="color:red;">${error.message}`;
   }
 }
