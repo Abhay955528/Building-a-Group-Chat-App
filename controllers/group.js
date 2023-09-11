@@ -63,7 +63,9 @@ const groupChats = async (req, res) => {
 const addUserToGroup = async (req, res) => {
   try {
     const groupName = req.body;
-    const username = req.params.name;
+    console.log(groupName);
+    const username = req.params.username;
+    console.log(username);
     const findGroup = await Group.findOne({
       where: groupName,
     });
@@ -114,8 +116,9 @@ const sendChatToGroup = async (req, res) => {
     const groupuser = await GroupUser.findOne({
       where: { userId: req.user.id },
     });
+    console.log(req.body.message);
     const sendChat = await Message.create({
-      massage: req.body.chat,
+      massage: req.body.message,
       userId: req.user.id,
       groupId: groupuser.groupId,
     });

@@ -35,11 +35,6 @@ async function newMassage(e) {
         headers: { Authorization: token },
       }
     );
-    if (localChats.length == 5) {
-      localChats.shift();
-    }
-    localChats.push(response.data.chat);
-    localStorage.setItem("chats", JSON.stringify(localChats));
 
     console.log(response.data);
     saveMessageToLocal(
@@ -47,6 +42,12 @@ async function newMassage(e) {
       response.data.NewMassage.massage
     );
     showOnDisplay(response.data.user.name, response.data.NewMassage.massage);
+
+    if (localChats.length == 5) {
+      localChats.shift();
+    }
+    localChats.push(response.data.chat);
+    localStorage.setItem("chats", JSON.stringify(localChats));
     Massage.value = "";
   } catch (error) {
     console.log(error);
@@ -167,16 +168,16 @@ async function groupChat(id) {
     groupChatBox.style = "visibility: visible;";
     document.getElementById("chat-one").style = "visibility: hidden;";
     const token = localStorage.getItem("token");
-    const grpChats = await axios.get(
-      "http://localhost:4000/group-chat/" +id,
-        { headers: { Authorization: token } }
-    );
+    const grpChats = await axios.get("http://localhost:4000/group-chat/" + id, {
+      headers: { Authorization: token },
+    });
 
+    const x = grpChats.data;
     const listItems = document.querySelectorAll("#user li");
     console.log(listItems);
-    listItems.forEach((listItem) => {
+    x.forEach((listItem) => {
       // console.log(listItem);
-      listItem.parentNode.removeChild(listItem);
+      listItem.parentNode.removeChild(listItem.name);
     });
 
     const chatsFromGrp = grpChats.data;
@@ -213,6 +214,7 @@ async function getUsers() {
 groupChatBox.addEventListener("submit", async (e) => {
   e.preventDefault();
   let chat = document.querySelector('#chat-group input[type="text"]').value;
+  console.log(chat);
   const token = localStorage.getItem("token");
   const sendGrpChat = await axios.post(
     "http://localhost:4000/group/sendchat/",
@@ -221,7 +223,7 @@ groupChatBox.addEventListener("submit", async (e) => {
   );
   console.log(sendGrpChat.data);
   let li = document.createElement("li");
-  li.innerHTML = sendGrpChat.data.message;
+  li.innerHTML = sendGrpChat.data.massage;
   ul.append(li);
   groupChatBox.value = "";
 });
