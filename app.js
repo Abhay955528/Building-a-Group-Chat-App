@@ -43,7 +43,7 @@ Forget.belongsTo(User);
 sequelize
   .sync()
   .then((result) => {
-    app.listen(4000);
+    app.listen(process.env.PORT);
   })
   .catch((error) => {
     console.log(error);
