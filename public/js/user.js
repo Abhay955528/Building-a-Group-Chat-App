@@ -24,7 +24,7 @@ async function sendUser(e) {
     console.log(user);
 
     const response = await axios.post(
-      "http://localhost:4000/user/user-Signup",
+      "http://44.201.87.18:4000/user/user-Signup",
       user
     );
 

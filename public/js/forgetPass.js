@@ -9,7 +9,7 @@ async function forgetpassword(e) {
 
     console.log(userDetails);
     const response = await axios.post(
-      "http://localhost:4000/user/password/forgetpassword",
+      "http://44.201.87.18:4000/user/password/forgetpassword",
       userDetails
     );
     if (response.status === 202) {

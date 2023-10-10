@@ -17,7 +17,7 @@ async function loginData(e) {
     console.log(loginUser);
 
     const response = await axios.post(
-      "http://localhost:4000/user/user-login",
+      "http://44.201.87.18:4000/user/user-login",
       loginUser
     );
 
