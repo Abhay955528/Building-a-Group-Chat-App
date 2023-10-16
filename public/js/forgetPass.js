@@ -1,3 +1,4 @@
+const BASE_URL = "44.201.87.18";
 async function forgetpassword(e) {
   try {
     e.preventDefault();
@@ -9,7 +10,7 @@ async function forgetpassword(e) {
 
     console.log(userDetails);
     const response = await axios.post(
-      "http://44.201.87.18:4000/user/password/forgetpassword",
+      `http://${BASE_URL}:4000/user/password/forgetpassword`,
       userDetails
     );
     if (response.status === 202) {

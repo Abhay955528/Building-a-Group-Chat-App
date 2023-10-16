@@ -9,10 +9,8 @@ function generateAccessToken(id, name) {
 
 const loginData = async (req, res) => {
   try {
-    console.log(req.url);
     const { email, pass } = req.body;
     console.log(email, pass);
-    console.log(user);
     const user = await Signup.findAll({ where: { email } });
     if (user.length > 0) {
       console.log("USERID>>>", user[0].id);
@@ -21,7 +19,7 @@ const loginData = async (req, res) => {
         //   throw new Error("Something went worng");
         // } 
         if (result === true) {
-          console.log(res.message55);
+          console.log(res.message);
           res.status(201).json({
             message: "Successfuly signed up",
             success: true,

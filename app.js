@@ -23,20 +23,20 @@ const Group = require("./model/group");
 const groupUser = require("./model/groupuser");
 const Forget = require("./model/forget");
 
-app.use(bodyParser.json());i
+app.use(bodyParser.json());
 app.use(cors());
 app.use(compression());
-
-app.use((req, res) => {
-  console.log(req.url);
-  res.sendFile(path.join(__dirname ,`views/${req.url}`));
-});
 
 app.use("/user", UserRoutes);
 app.use("/user", loginRoutes);
 app.use("/user", chatRoutes);
 app.use(groupRoutes);
 app.use("/user", forget);
+
+app.use((req, res) => {
+  console.log(req.url);
+  res.sendFile(path.join(__dirname, `views/${req.url}`));
+});
 
 User.hasMany(Massage);
 Massage.belongsTo(User);

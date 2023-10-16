@@ -13,6 +13,7 @@ const addUser = document.getElementById("add-user");
 const adminUser = document.getElementById("admin-user");
 const groupChatBox = document.getElementById("chat-group");
 const ul = document.getElementById("newul");
+const BASE_URL = "44.201.87.18";
 
 let localChats = [];
 let flag = 1;
@@ -29,7 +30,7 @@ async function newMassage(e) {
     };
     const token = localStorage.getItem("token");
     const response = await axios.post(
-      "http://44.201.87.18:4000/user/user-addmassage",
+      `http://${BASE_URL}:4000/user/user-addmassage`,
       newMassage,
       {
         headers: { Authorization: token },
@@ -65,7 +66,7 @@ async function addGroup(e) {
     console.log(obj);
     const token = localStorage.getItem("token");
     const createGroup = await axios.post(
-      "http://44.201.87.18:4000/group/create",
+      `http://${BASE_URL}:4000/group/create`,
       obj,
       { headers: { Authorization: token } }
     );
@@ -107,7 +108,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 async function showAllMassageRefreshPage() {
   const token = localStorage.getItem("token");
   const response = await axios.get(
-    "http://44.201.87.18:4000/user/user-getmassage",
+    `http://${BASE_URL}:4000/user/user-getmassage`,
     {
       headers: { Authorization: token },
     }
@@ -115,6 +116,7 @@ async function showAllMassageRefreshPage() {
   console.log(response);
 
   let allMassage = response.data.allMassage;
+  console.log(allMassage.data);
 
   parent.innerHTML = "";
   for (let i = 0; i < allMassage.length; i++) {
@@ -133,7 +135,7 @@ async function showAllMassageRefreshPage() {
 async function getGroups() {
   try {
     const token = localStorage.getItem("token");
-    const allGroups = await axios.get("http://44.201.87.18:4000/group/all", {
+    const allGroups = await axios.get(`http://${BASE_URL}:4000/group/all`, {
       headers: { Authorization: token },
     });
 
@@ -168,7 +170,7 @@ async function groupChat(id) {
     groupChatBox.style = "visibility: visible;";
     document.getElementById("chat-one").style = "visibility: hidden;";
     const token = localStorage.getItem("token");
-    const grpChats = await axios.get("http://44.201.87.18:4000/group-chat/" + id, {
+    const grpChats = await axios.get(`http://${BASE_URL}:4000/group-chat/` + id, {
       headers: { Authorization: token },
     });
 
@@ -195,7 +197,7 @@ async function groupChat(id) {
 async function getUsers() {
   try {
     const token = localStorage.getItem("token");
-    const allUsers = await axios.get("http://44.201.87.18:4000/user/all-user", {
+    const allUsers = await axios.get(`http://${BASE_URL}:4000/user/all-user`, {
       headers: { Authorization: token },
     });
     let usersData = allUsers.data;
@@ -217,7 +219,7 @@ groupChatBox.addEventListener("submit", async (e) => {
   console.log(chat);
   const token = localStorage.getItem("token");
   const sendGrpChat = await axios.post(
-    "http://44.201.87.18:4000/group/sendchat/",
+    `http://${BASE_URL}:4000/group/sendchat/`,
     { message: chat },
     { headers: { Authorization: token } }
   );
@@ -232,7 +234,7 @@ addUser.addEventListener("click", async () => {
   if (selectUser.value != "" && selectGroup.value != "") {
     const token = localStorage.getItem("token");
     const addUserToGroup = await axios.post(
-      "http://44.201.87.18:4000/group/adduser/" + selectUser.value,
+      `http://${BASE_URL}:4000/group/adduser/` + selectUser.value,
       { group: selectGroup.value },
       { headers: { Authorization: token } }
     );
@@ -247,7 +249,7 @@ adminUser.addEventListener("click", async () => {
     if (selectUser.value != "" && selectGroup.value != "") {
       const token = localStorage.getItem("token");
       const addAdminToGroup = await axios.post(
-        "http://44.201.87.18:4000/group/adminuser/" + selectUser.value,
+        `http://${BASE_URL}:4000/group/adminuser/` + selectUser.value,
         { group: selectGroup.value },
         { headers: { Authorization: token } }
       );

@@ -1,6 +1,7 @@
 const form = document.getElementById("login");
 const Email = document.getElementById("email");
 const Pass = document.getElementById("pass");
+const BASE_URL = "44.201.87.18";
 
 form.addEventListener("submit", loginData);
 
@@ -17,7 +18,7 @@ async function loginData(e) {
     console.log(loginUser);
 
     const response = await axios.post(
-      "http://44.201.87.18:4000/user/user-login",
+      `http://${BASE_URL}:4000/user/user-login`,
       loginUser
     );
 
